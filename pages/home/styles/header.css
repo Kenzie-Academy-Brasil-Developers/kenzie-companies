@@ -1,0 +1,48 @@
+.header{
+    padding: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
+}
+
+.div-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div-header div{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.div-header h1{
+    font-weight: var(--weight1);
+    font-size: var(--size4);
+}
+
+.div-header div button{
+    width: 140px;
+    height: 50px;
+    font-weight: var(--weight1);
+    font-size: var(--size5);
+}
+
+#buttonLogin{
+    background-color: var(--white);
+    border: 1px solid var(--brand1);
+    color: var(--brand1);
+}
+
+#buttonLogin:hover{
+    background-color: aliceblue;
+}
+
+#buttonRegister{
+    background-color: var(--brand1);
+    color: var(--white);
+}
+
+#buttonRegister:hover{
+    background-color: var(--brand2);
+}

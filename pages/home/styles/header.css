@@ -1,6 +1,7 @@
 .header{
     padding: 20px;
     margin-bottom: 40px;
+    background-color: var(--white);
     box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
 }
 
@@ -12,13 +13,7 @@
 
 .div-header div{
     display: flex;
-    align-items: center;
     gap: 12px;
-}
-
-.div-header h1{
-    font-weight: var(--weight1);
-    font-size: var(--size4);
 }
 
 .div-header div a{

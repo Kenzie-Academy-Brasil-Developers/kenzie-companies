@@ -7,27 +7,28 @@
     <link rel="shortcut icon" href="./img/favicon.svg" type="image/x-icon">
 
     <link rel="stylesheet" href="/globalStyles.css">
-    <link rel="stylesheet" href="./pages/home/styles/home.css">
+    <link rel="stylesheet" href="./pages/home/styles/header.css">
+    <link rel="stylesheet" href="./pages/home/styles/main.css">
     
     <title>Kenzie Empresas</title>
 </head>
 
 <body>
 
-    <header class="container header">
-        <div class="div-header">
+    <header class="header">
+        <div class="container div-header">
             <div>
                 <img src="./img/favicon.svg" alt="Logo">
                 <h1>Kenzie Empresas</h1>
             </div>
             <div>
-                <button>Login</button>
-                <button>Cadastro</button>
+                <button id="buttonLogin">Login</button>
+                <button id="buttonRegister">Cadastro</button>
             </div>
         </div>
     </header>
 
-    <div class="container">
+    <div class="container layout">
         <figure>
             <img src="./img/home/home-bg.svg">
         </figure>
@@ -37,11 +38,11 @@
                 <span>Selecionar Setor</span>
                 <img src="./img/home/arrow.svg">
             </div>
-            <ul>
+            <ul class="main-list">
                 <li>
                     <h2>Empresa Name</h2>
                     <small>10 horas</small>
-                    <small>Setor</small>
+                    <small class="kind">Setor</small>
                 </li>
             </ul>
         </main>

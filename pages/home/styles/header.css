@@ -21,7 +21,9 @@
     font-size: var(--size4);
 }
 
-.div-header div button{
+.div-header div a{
+    display: grid;
+    place-items: center;
     width: 140px;
     height: 50px;
     font-weight: var(--weight1);

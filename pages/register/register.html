@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="/globalStyles.css">
     <link rel="stylesheet" href="../home/styles/header.css">
+    <link rel="stylesheet" href="../login/styles/main.css">
+    <link rel="stylesheet" href="./styles/register.css">
     
     <title>Kenzie Empresas - Cadastro</title>
 </head>
@@ -21,6 +23,23 @@
             </div>
         </div>
     </header>
+
+    <main class="login">
+        <h1>Cadastre-se</h1>
+        <form class="form">
+            <input type="text" name="name" placeholder="Seu nome" required>
+            <input type="email" name="email" placeholder="Seu e-mail" required>
+            <input type="password" name="password" placeholder="Sua senha..." required>
+            <select>
+                <option>Nível profissional</option>
+                <option>Júnior</option>
+                <option>Pleno</option>
+                <option>Sênior</option>
+            </select>
+            <button type="submit">Cadastre-se</button>
+        </form>
+        <a href="/pages/register/register.html">Retornar</a>
+    </main>
     
     <script type="module" src="./scripts/register.js"></script>
 </body>

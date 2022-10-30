@@ -12,13 +12,7 @@
 
 .div-header div{
     display: flex;
-    align-items: center;
     gap: 12px;
-}
-
-.div-header h1{
-    font-weight: var(--weight1);
-    font-size: var(--size4);
 }
 
 .div-header div a{

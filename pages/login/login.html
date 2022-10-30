@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="/globalStyles.css">
     <link rel="stylesheet" href="../home/styles/header.css">
+    <link rel="stylesheet" href="./styles/main.css">
     
     <title>Kenzie Empresas - Login</title>
 </head>
@@ -16,7 +17,7 @@
         <div class="container div-header">
             <img src="/img/logo.svg" alt="Logo">
             <div>
-                <a href="/pages/login/login.html" id="buttonLogin">Home</a>
+                <a href="/index.html" id="buttonLogin">Home</a>
                 <a href="/pages/register/register.html" id="buttonRegister">Cadastro</a>
             </div>
         </div>
@@ -25,13 +26,13 @@
     <main class="login">
         <h1>Login</h1>
         <p>Preencha os campos para realizar login</p>
-        <form>
+        <form class="form">
             <input type="email" name="email" id="emailInput" placeholder="Seu e-mail" required>
             <input type="password" name="password" id="passwordInput" placeholder="Sua senha..." required>
             <button type="submit">Login</button>
         </form>
         <span>ou</span>
-        <a href="/index.html">Cadastre-se</a>
+        <a href="/pages/register/register.html">Cadastre-se</a>
     </main>
     
     <script type="module" src="./scripts/login.js"></script>

@@ -18,25 +18,13 @@
     max-height: 700px;
 }
 
-.div-top{
-    padding: 10px 0;
+.select{
     width: 100%;
-    position: relative;
-    display: grid;
-    place-items: center;
+    height: 50px;
     background-color: var(--brand1);
-}
-
-.div-top span{
     color: var(--white);
-    font-weight: var(--weight3);
     font-size: var(--size4);
-
-}
-
-.div-top img{
-    position: absolute;
-    right: 20px;
+    text-align: center;
 }
 
 .main-list{

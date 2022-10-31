@@ -1,0 +1,113 @@
+.modal-see{
+    width: 50rem;
+    padding: 30px 40px;
+    margin: 60px auto 0 auto;
+    position: relative;
+}
+
+.modal-see span{
+    font-size: 20px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.modal-see h2{
+    font-weight: var(--weight1);
+    font-size: var(--size2);
+    margin-bottom: 20px;
+}
+
+.modal-see > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 40px;
+}
+
+.modal-see div p{
+    font-weight: var(--weight1);
+    font-size: var(--size3);
+    margin-bottom: 5px;
+}
+
+.modal-see div form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.modal-see div form select{
+    width: 400px;
+    height: 50px;
+    padding-left: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.modal-see div form .default{
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: var(--weight2);
+}
+
+.modal-see div form button{
+    height: 50px;
+    padding: 0 30px;
+    background-color: var(--success);
+    border: 1px solid transparent;
+    color: var(--white);
+    font-weight: var(--weight1);
+}
+
+.modal-see div form button:hover {
+    background-color: transparent;
+    border: 1px solid var(--success);
+    color: var(--success);
+    
+}
+
+.modal-see ul{
+    padding: 30px 25px;
+    display: flex;
+    gap: 25px;
+    overflow: auto;
+    background-color: #F8F8F8;
+}
+
+.modal-see ul li{
+    min-width: 300px;
+    padding: 15px 25px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--brand1);
+}
+
+.modal-see ul li h3{
+    font-size: var(--size3);
+    font-weight: var(--weight1);
+}
+
+.modal-see ul li small{
+    display: block;
+    margin-top: 3px;
+}
+
+.modal-see ul li div{
+    display: grid;
+    place-items: center;
+}
+
+.modal-see ul li div button{
+    height: 40px;
+    padding: 0 30px;
+    margin-top: 20px;
+    font-weight: var(--weight1);
+    color: var(--alert);
+    border: 1px solid var(--alert);
+    background-color: transparent;
+}
+
+.modal-see ul li div button:hover{
+    background-color: var(--alert);
+    color: var(--white);
+}

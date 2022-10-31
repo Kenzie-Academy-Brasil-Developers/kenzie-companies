@@ -45,7 +45,7 @@ button{
   --size4: 1.25rem;
   --size5: 1rem;
 
-  --weight1: 600;
+  --weight1: 700;
   --weight2: 500;
   --weight3: 400;
   
@@ -58,4 +58,18 @@ button{
   max-width: 100%;
   padding: 0 1rem;
   margin: 0 auto;
+}
+
+.modal-bg{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(70, 35, 167, 0.13);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.modal{
+    background-color: var(--white);
+    padding: 30px 40px;
 }

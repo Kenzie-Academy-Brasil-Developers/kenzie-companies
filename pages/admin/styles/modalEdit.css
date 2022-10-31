@@ -5,9 +5,10 @@
 }
 
 .modal-edit span{
+    font-size: 20px;
     position: absolute;
-    top: 8px;
-    right: 15px;
+    top: 15px;
+    right: 20px;
     cursor: pointer;
 }
 
@@ -16,6 +17,15 @@
     font-weight: var(--weight1);
     margin-bottom: 20px;
 }
+
+.modal-edit form input{
+    width: 100%;
+    height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding-left: 10px;
+    margin-bottom: 12px;
+}    
+
 
 .modal-edit form select{
     width: 100%;

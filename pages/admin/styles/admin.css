@@ -1,0 +1,95 @@
+.div-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.section h2{
+    font-size: 25px;
+    font-weight: var(--weight1);
+    text-align: center;
+}
+
+.div-top select{
+    border: 1px solid #000000;
+    border-radius: 15px;
+    padding: 3px 15px;
+}
+
+.div-top button{
+    background-color: var(--brand1);
+    color: var(--white);
+    padding: 10px;
+    display: grid;
+    place-items: center;
+    width: 120px;
+    position: relative;
+}
+
+.div-top button:hover{
+    background-color: var(--brand2);
+}
+
+.div-top button span{
+    font-size: 40px;
+    font-weight: 200;
+    position: absolute;
+    left: 8px;
+    top: -10px;
+}
+
+.div-top button span + span{
+    font-size: 16px;
+    font-weight: var(--weight1);
+    position: static;
+}
+
+.section{
+    margin-bottom: 50px;
+}
+
+.section ul{
+    background-color: #F8F8F8;
+    max-height: 350px;
+    margin-top: 15px;
+    padding: 30px 55px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px 5px;
+    overflow: auto;
+}
+
+.section ul li{
+    background-color: var(--white);
+    border-bottom: 1px solid var(--brand1);
+    padding: 15px 20px;
+    width: 450px;
+}
+
+.section ul li h3{
+    font-weight: var(--weight1);
+    font-size: var(--size3);
+    margin-bottom: 2px;
+
+}
+
+.section ul li small{
+    font-size: var(--size3);
+    font-weight: var(--weight3);
+    display: block;
+    margin-top: 3px;
+}
+
+.section ul li div{
+    margin-top: 20px;
+    display: grid;
+    place-items: center;
+    grid-auto-flow: column;
+    justify-content: space-evenly
+}
+
+ul li div img{
+    height: 23px;
+    cursor: pointer;
+}

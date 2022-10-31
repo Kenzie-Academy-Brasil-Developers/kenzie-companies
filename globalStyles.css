@@ -59,3 +59,17 @@ button{
   padding: 0 1rem;
   margin: 0 auto;
 }
+
+.modal-bg{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(70, 35, 167, 0.13);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.modal{
+    background-color: var(--white);
+    padding: 30px 40px;
+}

@@ -23,23 +23,20 @@
     height: 50px;
     font-weight: var(--weight1);
     font-size: var(--size5);
-}
-
-#buttonLogin{
     background-color: var(--white);
     border: 1px solid var(--brand1);
     color: var(--brand1);
 }
 
-#buttonLogin:hover{
+.div-header div a:hover{
     background-color: aliceblue;
 }
 
-#buttonRegister{
+.div-header div a + a{
     background-color: var(--brand1);
     color: var(--white);
 }
 
-#buttonRegister:hover{
+.div-header div a + a:hover{
     background-color: var(--brand2);
 }

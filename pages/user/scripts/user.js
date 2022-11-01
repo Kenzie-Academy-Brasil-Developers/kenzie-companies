@@ -1,5 +1,20 @@
 import { getUserInfo, getUserCompanyInfo, getUserDepartmentInfo } from "../../../request.js";
-const userToken = localStorage.getItem('userToken') || ''
+const userToken = localStorage.getItem('userToken')
+
+
+if (!userToken) {
+    location.replace('/index.html')
+}
+
+
+function logoutToken() {
+    const buttonLogout = document.querySelector('.logout')
+    buttonLogout.addEventListener('click', () => {
+        localStorage.removeItem('userToken')
+    })
+}
+logoutToken()
+
 
 async function renderUserInfo () {
     let { username, email, professional_level, kind_of_work } = await getUserInfo(userToken)

@@ -20,6 +20,17 @@ export async function getCompanies (sector) {
 }
 
 
+export async function typeOfUser (token) {
+    const requestUserType = await fetch(`${baseUrl}/auth/validate_user`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${token}`}
+    })
+    const responseUserType = await requestUserType.json()
+
+    return responseUserType.is_admin
+}
+
+
 export async function login (body) {
     try{
         const requestLogin = await fetch(`${baseUrl}/auth/login`, {
@@ -29,7 +40,6 @@ export async function login (body) {
         })
         const responseLogin = await requestLogin.json()
 
-        console.log(requestLogin, responseLogin)
 
         if (responseLogin.error == 'email invalid!') {
             throw new Error('E-mail inválido')
@@ -37,7 +47,12 @@ export async function login (body) {
             throw new Error('Senha inválida')
         }
 
-        if (requestLogin.ok) {
+        
+        if (requestLogin.ok && await typeOfUser(responseLogin.token)) {
+            localStorage.setItem('userToken', responseLogin.token)
+            location.assign('../admin/admin.html')
+            
+        } else if (requestLogin.ok && !(await typeOfUser(responseLogin.token))) {
             localStorage.setItem('userToken', responseLogin.token)
             location.assign('../user/user.html')
         }

@@ -43,7 +43,6 @@ function loginBody() {
             email: userEmail,
             password: userPassword
         }
-        console.log(user)
 
         login(user)
     })

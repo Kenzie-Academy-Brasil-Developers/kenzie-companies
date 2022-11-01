@@ -1,42 +1,103 @@
-.header{
-    padding: 20px 0;
-    margin-bottom: 40px;
-    background-color: var(--white);
-    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
+@media (min-width: 550px) {
+    
+    .header{
+        padding: 20px 0;
+        margin-bottom: 40px;
+        background-color: var(--white);
+        box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.12);
+    }
+    
+    .div-header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    
+    .div-header .dropdown{
+        display: none;
+    }
+    
+    .div-header .menu-buttons{
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        margin: 0;
+    }
+    
+    .div-header .menu-buttons a{
+        display: grid;
+        place-items: center;
+        width: 140px;
+        height: 50px;
+        font-weight: var(--weight1);
+        font-size: var(--size5);
+        background-color: var(--white);
+        border: 1px solid var(--brand1);
+        color: var(--brand1);
+    }
+    
+    .div-header .menu-buttons a:hover{
+        background-color: aliceblue;
+    }
+    
+    .div-header .menu-buttons a + a{
+        background-color: var(--brand1);
+        color: var(--white);
+    }
+    
+    .div-header .menu-buttons a + a:hover{
+        background-color: var(--brand2);
+    }
 }
 
-.div-header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 
-.div-header div{
-    display: flex;
-    gap: 12px;
-}
+@media (max-width: 549px) {
+    .header{
+        background-color: var(--white);
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        position: relative;
+    }
+    
+    .div-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .dropdown{
+        cursor: pointer;
+    }
+    
+    .menu-buttons{
+        background-color: var(--white);
+        display: none;
+        justify-content: space-evenly;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        width: 100%;
+        position: fixed;
+        top: 60px;
+        left: 0;
 
-.div-header div a{
-    display: grid;
-    place-items: center;
-    width: 140px;
-    height: 50px;
-    font-weight: var(--weight1);
-    font-size: var(--size5);
-    background-color: var(--white);
-    border: 1px solid var(--brand1);
-    color: var(--brand1);
-}
-
-.div-header div a:hover{
-    background-color: aliceblue;
-}
-
-.div-header div a + a{
-    background-color: var(--brand1);
-    color: var(--white);
-}
-
-.div-header div a + a:hover{
-    background-color: var(--brand2);
+    }
+    
+    .menu-buttons a{
+        display: grid;
+        place-items: center;
+        height: 45px;
+        width: 140px;
+        border: 1px solid #4200FF;
+        color: var(--brand1);
+        font-weight: var(--weight1);
+    }
+    
+    .menu-buttons a + a{
+        background-color: var(--brand1);
+        color: var(--white);
+    }
 }

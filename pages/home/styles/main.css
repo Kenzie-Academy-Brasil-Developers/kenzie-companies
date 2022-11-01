@@ -74,6 +74,7 @@
         color: var(--white);
         font-size: var(--size4);
         text-align: center;
+        outline: none;
     }
     
     .main-list{  

@@ -51,6 +51,14 @@ export async function login (body) {
 }
 
 
-// export async function register (body) {
-
-// }
+export async function register (body) {
+    const requestRegister = await fetch(`${baseUrl}/auth/register`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body)
+    })
+    
+    if (requestRegister.ok) {
+        location.replace('../login/login.html')
+    }
+}

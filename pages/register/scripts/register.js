@@ -1,3 +1,6 @@
+import { register } from "../../../request.js"
+
+
 function menuDropdown () {
     const divHeader = document.querySelector('.div-header')
     const menuButtons = document.querySelector('.menu-buttons')
@@ -24,3 +27,28 @@ function menuDropdown () {
     })
 }
 menuDropdown ()
+
+
+function registerBody () {
+    const formRegister = document.querySelector('.form')
+    console.log(formRegister.elements)    
+    formRegister.addEventListener('submit', (event) => {
+        event.preventDefault()
+
+        let newUser = {}
+
+        let newUserName     = formRegister.elements[0].value
+        let newUserEmail    = formRegister.elements[1].value
+        let newUserPassword = formRegister.elements[2].value
+        let newUserLevel    = formRegister.elements[3].value
+
+        newUser = {
+            username: newUserName,
+            password: newUserPassword,
+            email: newUserEmail,
+            professional_level: newUserLevel
+        }
+        register(newUser)
+    })
+}
+registerBody()

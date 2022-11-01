@@ -1,5 +1,6 @@
 const baseUrl = 'http://localhost:6278'
 
+
 export async function getAllSectors () {
     const requestAllSectors = await fetch(`${baseUrl}/sectors`, {
         method: 'GET'
@@ -76,4 +77,15 @@ export async function register (body) {
     if (requestRegister.ok) {
         location.replace('../login/login.html')
     }
+}
+
+
+export async function getUserInfo (token) {
+    const requestUserInfo = await fetch(`${baseUrl}/users/profile`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${token}`}
+    })
+    const responseUserInfo = await requestUserInfo.json()
+
+    return responseUserInfo
 }

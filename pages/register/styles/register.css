@@ -1,5 +1,8 @@
-.header{
-    margin-bottom: 0;
+@media (max-width: 549px) {
+    .header{
+        margin-bottom: 0;
+    }
+    
 }
 
 .form select{

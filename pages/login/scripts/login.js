@@ -1,3 +1,5 @@
+import { login } from "../../../request.js"
+
 
 
 function menuDropdown () {
@@ -26,3 +28,24 @@ function menuDropdown () {
     })
 }
 menuDropdown ()
+
+
+function loginBody() {
+    const form = document.querySelector('.form')
+    form.addEventListener('submit', (event) => {
+        event.preventDefault()
+        let user = {}
+
+        let userEmail = form.elements[0].value
+        let userPassword = form.elements[1].value
+
+        user = {
+            email: userEmail,
+            password: userPassword
+        }
+        console.log(user)
+
+        login(user)
+    })
+}
+loginBody()

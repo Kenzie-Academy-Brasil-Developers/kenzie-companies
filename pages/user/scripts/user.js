@@ -34,7 +34,7 @@ async function renderUserInfo () {
                 <small id="kindOfWork"></small>
             </div>
         </div>
-        <img src="/img/home/edit-icon-blue.svg" alt="Editar Perfil">
+        <img id="editUserInfo" src="/img/home/edit-icon-blue.svg" alt="Editar Perfil">
     `)
 
     let smallKindOfWork = document.querySelector('#kindOfWork')
@@ -46,16 +46,43 @@ async function renderUserInfo () {
 
         smallKindOfWork.innerText = kindOfWork
     }
+
+    
+    let imgEditIcon = document.querySelector('#editUserInfo')
+    createModalEdit(imgEditIcon)
+    
 }
 renderUserInfo()
 
 
-async function renderDepartmentInfo () {
-    let companyInfo = await getUserCompanyInfo(userToken)
-    let userDepartmentInfo = await getUserDepartmentInfo(userToken)
-    let {department_uuid} = await getUserInfo(userToken)
+function createModalEdit (icon) {
+    icon.addEventListener('click', () => {
+        let divModal = document.createElement('div')
+        divModal.className = 'modal-bg'
+        divModal.insertAdjacentHTML('afterbegin', `
+            <section class="modal modal-edit">
+                <span class="close-modal">X</span>
+                <h2>Editar Perfil</h2>
+                <form>
+                    <input type="text" placeholder="Seu nome">
+                    <input type="text" placeholder="Seu e-mail">
+                    <input type="password" placeholder="Sua senha">
+                    <button type="submit">Editar perfil</button>
+                </form>
+            </section>
+        `)
+        document.body.appendChild(divModal)
+    })
+}
 
+
+async function renderDepartmentInfo () {
+    let {department_uuid} = await getUserInfo(userToken)
+    
     if (department_uuid) {
+        let companyInfo = await getUserCompanyInfo(userToken)
+        let userDepartmentInfo = await getUserDepartmentInfo(userToken)
+
         let divMain = document.querySelector('.main-empty')
         divMain.classList.remove('main-empty')
         divMain.classList.add('main')

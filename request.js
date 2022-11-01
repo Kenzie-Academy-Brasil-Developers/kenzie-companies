@@ -90,6 +90,16 @@ export async function getUserInfo (token) {
     return responseUserInfo
 }
 
+
+export async function updateUserInfo (token) {
+    const requestRegister = await fetch(`${baseUrl}/users`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body)
+    })
+}
+
+
 export async function getUserCompanyInfo (token) {
     const requestCompanyInfo = await fetch(`${baseUrl}/users/departments`, {
         method: 'GET',

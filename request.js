@@ -49,3 +49,8 @@ export async function login (body) {
         spanError.style.display = 'inline-block'
     }
 }
+
+
+// export async function register (body) {
+
+// }

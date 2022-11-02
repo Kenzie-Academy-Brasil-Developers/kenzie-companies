@@ -1,5 +1,6 @@
 const baseUrl = 'http://localhost:6278'
 
+
 export async function getAllSectors () {
     const requestAllSectors = await fetch(`${baseUrl}/sectors`, {
         method: 'GET'
@@ -76,4 +77,49 @@ export async function register (body) {
     if (requestRegister.ok) {
         location.replace('../login/login.html')
     }
+}
+
+
+export async function getUserInfo (token) {
+    const requestUserInfo = await fetch(`${baseUrl}/users/profile`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${token}`}
+    })
+    const responseUserInfo = await requestUserInfo.json()
+
+    return responseUserInfo
+}
+
+
+export async function updateUserInfo (token, body) {
+    const requestRegister = await fetch(`${baseUrl}/users`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+    })
+}
+
+
+export async function getUserCompanyInfo (token) {
+    const requestCompanyInfo = await fetch(`${baseUrl}/users/departments`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${token}`}
+    })
+    const responseCompanyInfo = await requestCompanyInfo.json()
+
+    return responseCompanyInfo
+}
+
+
+export async function getUserDepartmentInfo (token) {
+    const requestDepartmentInfo = await fetch(`${baseUrl}/users/departments/coworkers`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${token}`}
+    })
+    const responseDepartmentInfo = await requestDepartmentInfo.json()
+
+    return responseDepartmentInfo
 }

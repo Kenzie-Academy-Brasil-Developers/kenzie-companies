@@ -23,7 +23,7 @@
     cursor: pointer;
 }
 
-/* .main{
+.main-empty{
     min-height: 350px;
     display: grid;
     place-items: center;
@@ -32,16 +32,16 @@
     margin-bottom: 50px;
 }
 
-.main h2{
+main h2{
     font-weight: var(--weight1);
     font-size: 25px;
     text-align: center;
-} */
+}
 
 
 
 
-.main h2{
+.main .company-title{
     font-weight: var(--weight1);
     font-size: 25px;
     text-align: center;

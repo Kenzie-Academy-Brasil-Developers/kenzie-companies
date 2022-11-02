@@ -1,4 +1,4 @@
-import { getUserInfo, getUserCompanyInfo, getUserDepartmentInfo } from "../../../request.js";
+import { getUserInfo, updateUserInfo, getUserCompanyInfo, getUserDepartmentInfo } from "../../../request.js";
 const userToken = localStorage.getItem('userToken')
 
 
@@ -55,7 +55,9 @@ async function renderUserInfo () {
 renderUserInfo()
 
 
-function createModalEdit (icon) {
+async function createModalEdit (icon) {
+    const userInfo = await getUserInfo(userToken)
+    
     icon.addEventListener('click', () => {
         let divModal = document.createElement('div')
         divModal.className = 'modal-bg'
@@ -63,15 +65,39 @@ function createModalEdit (icon) {
             <section class="modal modal-edit">
                 <span class="close-modal">X</span>
                 <h2>Editar Perfil</h2>
-                <form>
-                    <input type="text" placeholder="Seu nome">
-                    <input type="text" placeholder="Seu e-mail">
-                    <input type="password" placeholder="Sua senha">
+                <p>Preencha apenas o campo que deseja alterar</p>
+                <form id="formEdit">
+                    <input type="text" placeholder="Seu nome" value="">
+                    <input type="text" placeholder="Seu e-mail" value="">
+                    <input type="password" placeholder="Sua senha" value="">
                     <button type="submit">Editar perfil</button>
                 </form>
             </section>
         `)
         document.body.appendChild(divModal)
+
+        const spanCloseModal = document.querySelector('.close-modal')
+        spanCloseModal.addEventListener('click', () => { divModal.remove() })
+
+        const formEdit = document.querySelector('#formEdit')
+        formEdit.addEventListener('submit', (event) => {
+            event.preventDefault()
+
+            let updatedUserInfo = {}
+
+            let updatedName     = formEdit.elements[0].value
+            let updatedEmail    = formEdit.elements[1].value
+            let updatedPassword = formEdit.elements[2].value
+
+            updatedUserInfo = {
+                username: updatedName,
+                email: updatedEmail,
+                password: updatedPassword
+            }
+
+            updateUserInfo(userToken ,updatedUserInfo)
+            divModal.remove()
+        })
     })
 }
 

@@ -91,10 +91,13 @@ export async function getUserInfo (token) {
 }
 
 
-export async function updateUserInfo (token) {
+export async function updateUserInfo (token, body) {
     const requestRegister = await fetch(`${baseUrl}/users`, {
         method: 'PATCH',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify(body)
     })
 }

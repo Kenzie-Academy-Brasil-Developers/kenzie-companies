@@ -148,6 +148,18 @@ export async function getAllDepartments (token, id = ''){
 }
 
 
+export async function createDepartment (token, body) {
+    const requestNewDepartment = await fetch(`${baseUrl}/departments`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+    })
+}
+
+
 export async function editDepartment (token, body, departmentId) {
     const requestEditDepartment = await fetch(`${baseUrl}/departments/${departmentId}`, {
         method: 'PATCH',

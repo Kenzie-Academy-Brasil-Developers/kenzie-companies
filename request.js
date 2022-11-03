@@ -136,3 +136,24 @@ export async function getUserDepartmentInfo (token) {
 
     return responseDepartmentInfo
 }
+
+
+export async function getAllDepartments (token, id = ''){
+    const requestDepartments = await fetch(`${baseUrl}/departments/${id}`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${token}`}
+    })
+    const responseDepartments = await requestDepartments.json()
+    return responseDepartments
+}
+
+
+export async function getAllUsers (token) {
+    const requestAllUsers = await fetch(`${baseUrl}/users`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${token}`}
+    })
+    const responseAllUsers = await requestAllUsers.json()
+
+    return responseAllUsers
+}

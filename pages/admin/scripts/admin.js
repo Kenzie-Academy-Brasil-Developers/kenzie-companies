@@ -1,4 +1,5 @@
 import { typeOfUser, getAllDepartments, getCompanies, getAllUsers } from "../../../request.js"
+import { createEditUserModal } from "./modalsAdmin.js"
 
 
 const selectCompanies   = document.querySelector('#selectCompanies')
@@ -82,14 +83,15 @@ function createDepartmentList (obj) {
 }
 
 
-async function renderUsersList () {
+export async function renderUsersList () {
     const ulUsersList = document.querySelector('#usersList')
+    ulUsersList.innerHTML = ''
     
     let allUsers = await getAllUsers(userToken)
     
     allUsers.forEach(async (user) => {
-        ulUsersList.appendChild(await createUserli(user))
-
+        let li = await createUserli(user)
+        ulUsersList.appendChild(li)
     })
 
 }
@@ -106,6 +108,7 @@ async function createUserli(obj) {
     proLevel = proLevel.join('')
     
     let li = document.createElement('li')
+    li.id = obj.uuid
 
     let h3UserName = document.createElement('h3')
     h3UserName.innerText = username
@@ -126,11 +129,22 @@ async function createUserli(obj) {
     }
 
     let divIcons = document.createElement('div')
-    divIcons.insertAdjacentHTML('afterbegin', `
-        <img src="/img/home/edit-icon-blue.svg" alt="Editar Departamento">
-        <img src="/img/home/trash-icon.svg" alt="Excluir Departamento">
-    `)
 
+    let imgEditIcon = document.createElement('img')
+    imgEditIcon.className = 'edit-user-icon'
+    imgEditIcon.src = '/img/home/edit-icon-blue.svg'
+    imgEditIcon.alt = 'Editar informações do usuário'
+
+    imgEditIcon.addEventListener('click', () => {
+        createEditUserModal(li.id)
+    })
+    
+    let imgDeleteIcon = document.createElement('img')
+    imgDeleteIcon.className = 'delete-user-icon'
+    imgDeleteIcon.src = '/img/home/trash-icon.svg'
+    imgDeleteIcon.alt = 'Excluir usuário'
+
+    divIcons.append(imgEditIcon, imgDeleteIcon)
     li.append(h3UserName, smallProLevel, smallWorkFor, divIcons)
     
     return li

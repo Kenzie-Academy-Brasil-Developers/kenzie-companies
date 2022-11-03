@@ -1,4 +1,4 @@
-import { getUserInfo, updateUserInfo, getUserCompanyInfo, getUserDepartmentInfo } from "../../../request.js";
+import { typeOfUser, getUserInfo, updateUserInfo, getUserCompanyInfo, getUserDepartmentInfo } from "../../../request.js";
 const userToken = localStorage.getItem('userToken')
 
 
@@ -6,6 +6,9 @@ if (!userToken) {
     location.replace('/index.html')
 }
 
+if ((await typeOfUser(userToken))) {
+    location.replace('/pages/admin/admin.html')
+}
 
 function logoutToken() {
     const buttonLogout = document.querySelector('.logout')
@@ -56,8 +59,6 @@ renderUserInfo()
 
 
 async function createModalEdit (icon) {
-    const userInfo = await getUserInfo(userToken)
-    
     icon.addEventListener('click', () => {
         let divModal = document.createElement('div')
         divModal.className = 'modal-bg'

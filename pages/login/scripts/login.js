@@ -1,6 +1,6 @@
 import { login } from "../../../request.js"
 
-
+localStorage.removeItem('userToken')
 
 function menuDropdown () {
     const divHeader = document.querySelector('.div-header')

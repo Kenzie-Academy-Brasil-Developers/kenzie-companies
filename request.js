@@ -68,14 +68,27 @@ export async function login (body) {
 
 
 export async function register (body) {
-    const requestRegister = await fetch(`${baseUrl}/auth/register`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(body)
-    })
-    
-    if (requestRegister.ok) {
-        location.replace('../login/login.html')
+
+    try{
+        const requestRegister = await fetch(`${baseUrl}/auth/register`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+        const responseRegister = await requestRegister.json()
+        
+        if (responseRegister.error == 'email alread exists!') {
+            throw new Error('E-mail já existente')
+        }
+        
+        if (requestRegister.ok) {
+            location.replace('../login/login.html')
+        }
+    }
+    catch(error) {
+        const spanError = document.querySelector('.error')
+        spanError.innerText = error.message
+        spanError.style.display = 'inline-block'
     }
 }
 
@@ -122,4 +135,25 @@ export async function getUserDepartmentInfo (token) {
     const responseDepartmentInfo = await requestDepartmentInfo.json()
 
     return responseDepartmentInfo
+}
+
+
+export async function getAllDepartments (token, id = ''){
+    const requestDepartments = await fetch(`${baseUrl}/departments/${id}`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${token}`}
+    })
+    const responseDepartments = await requestDepartments.json()
+    return responseDepartments
+}
+
+
+export async function getAllUsers (token) {
+    const requestAllUsers = await fetch(`${baseUrl}/users`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${token}`}
+    })
+    const responseAllUsers = await requestAllUsers.json()
+
+    return responseAllUsers
 }

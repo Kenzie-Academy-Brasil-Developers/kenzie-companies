@@ -64,9 +64,8 @@ async function createCompaniesList () {
             (await companies()).forEach((company) => {
                 ulMainList.appendChild(renderList(company))
             })
-        }
-
-        else {
+            
+        } else {
             (await companies(select.value)).forEach((company) => {
                 ulMainList.appendChild(renderList(company))
             })

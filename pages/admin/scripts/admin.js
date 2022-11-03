@@ -1,5 +1,5 @@
 import { typeOfUser, getAllDepartments, getCompanies, getAllUsers } from "../../../request.js"
-import { createEditUserModal } from "./modalsAdmin.js"
+import { createEditUserModal, createDeleteUserModal } from "./modalsAdmin.js"
 
 
 const selectCompanies   = document.querySelector('#selectCompanies')
@@ -103,9 +103,12 @@ async function createUserli(obj) {
     username[0] = username[0].toUpperCase()
     username = username.join('')
     
-    let proLevel = obj.professional_level.split('')
-    proLevel[0] = proLevel[0].toUpperCase()
-    proLevel = proLevel.join('')
+    let proLevel = ''
+    if (obj.professional_level) {
+        proLevel = obj.professional_level.split('')
+        proLevel[0] = proLevel[0].toUpperCase()
+        proLevel = proLevel.join('')
+    }
     
     let li = document.createElement('li')
     li.id = obj.uuid
@@ -144,6 +147,10 @@ async function createUserli(obj) {
     imgDeleteIcon.src = '/img/home/trash-icon.svg'
     imgDeleteIcon.alt = 'Excluir usuário'
 
+    imgDeleteIcon.addEventListener('click', () => {
+        createDeleteUserModal(username, li.id)
+    })
+    
     divIcons.append(imgEditIcon, imgDeleteIcon)
     li.append(h3UserName, smallProLevel, smallWorkFor, divIcons)
     

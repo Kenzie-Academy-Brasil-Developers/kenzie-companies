@@ -1,4 +1,4 @@
-import { editUserInfo } from "../../../request.js";
+import { editUserInfo, deleteUser } from "../../../request.js";
 import { renderUsersList } from "./admin.js";
 
 const userToken = localStorage.getItem('userToken')
@@ -52,12 +52,40 @@ export function createEditUserModal (userId) {
 
         await editUserInfo(userToken, editedUserBody, userId)
 
-        divModalEditUser.remove()
         await renderUsersList()
+        divModalEditUser.remove()
     })
     
     sectionModalEdit.append(spanCloseModal, h2ModalTitle, formEdit)
     divModalEditUser.appendChild(sectionModalEdit)
     document.body.appendChild(divModalEditUser)
      
+}
+
+export function createDeleteUserModal (userName, userId) {
+    let divModalDeleteUser = document.createElement('div')
+    let sectionModalDelete = document.createElement('section')
+    let spanCloseModal = document.createElement('span')
+    let pMessage = document.createElement('p')
+    let buttonDelete = document.createElement('button')
+
+
+    divModalDeleteUser.className = 'modal-bg'
+    sectionModalDelete.classList = 'modal modal-delete'
+    spanCloseModal.innerText = 'X'
+    spanCloseModal.addEventListener('click', () => { divModalDeleteUser.remove() })
+    pMessage.innerText = `Realmente deseja remover o usuário ${userName}?`
+    buttonDelete.innerText = 'Deletar'
+
+    buttonDelete.addEventListener('click', async () => {
+        await deleteUser(userToken, userId)
+
+        await renderUsersList()
+        divModalDeleteUser.remove()
+    })
+
+
+    sectionModalDelete.append(spanCloseModal, pMessage, buttonDelete)
+    divModalDeleteUser.appendChild(sectionModalDelete)
+    document.body.appendChild(divModalDeleteUser)
 }

@@ -170,3 +170,13 @@ export async function editUserInfo (token, body, id) {
     })
     const responseEditUserInfo = await requestEditUserInfo.json()
 }
+
+
+export async function deleteUser (token, id) {
+    const requestDeleteUser = await fetch(`${baseUrl}/admin/delete_user/${id}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}

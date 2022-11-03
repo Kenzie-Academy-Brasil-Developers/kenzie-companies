@@ -3,6 +3,7 @@ import { renderDepartmentsList, renderUsersList } from "./admin.js";
 
 const userToken = localStorage.getItem('userToken')
 
+
 export function createEditDepartmentModal (department, departmentId) {
     let divModalEdit = document.createElement('div')
     let sectionModalEdit = document.createElement('section')

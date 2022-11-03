@@ -162,6 +162,16 @@ export async function editDepartment (token, body, departmentId) {
 }
 
 
+export async function deleteDepartment (token, departmentId) {
+    const requestDeleteDepartment = await fetch(`${baseUrl}/departments/${departmentId}`, {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+}
+
+
 export async function getAllUsers (token) {
     const requestAllUsers = await fetch(`${baseUrl}/users`, {
         method: 'GET',

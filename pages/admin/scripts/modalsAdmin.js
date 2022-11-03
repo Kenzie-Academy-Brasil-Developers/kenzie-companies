@@ -1,4 +1,4 @@
-import { editDepartment, editUserInfo, deleteUser } from "../../../request.js";
+import { editDepartment, deleteDepartment, editUserInfo, deleteUser } from "../../../request.js";
 import { renderDepartmentsList, renderUsersList } from "./admin.js";
 
 const userToken = localStorage.getItem('userToken')
@@ -41,6 +41,32 @@ export function createEditDepartmentModal (department, departmentId) {
     sectionModalEdit.append(spanCloseModal, h2ModalTitle, formEdit)
     divModalEdit.appendChild(sectionModalEdit)
     document.body.appendChild(divModalEdit)
+}
+
+
+export function createDeleteDepartmentModal (departmentName, departmentId) {
+    let divModalDelete     = document.createElement('div')
+    let sectionModalDelete = document.createElement('section')
+    let spanCloseModal     = document.createElement('span')
+    let pMessage           = document.createElement('p')
+    let buttonDelete       = document.createElement('button')
+
+    divModalDelete.className = 'modal-bg'
+    sectionModalDelete.classList = 'modal modal-delete'
+    spanCloseModal.innerText = 'X'
+    spanCloseModal.addEventListener('click', () => { divModalDelete.remove() })
+    pMessage.innerText = `Realmente deseja deletar o Departamento ${departmentName} e demitir seus funcionários?`
+    buttonDelete.innerText = 'Deletar'
+    buttonDelete.addEventListener('click', async () => {
+        await deleteDepartment(userToken, departmentId)
+
+        await renderDepartmentsList()
+        divModalDelete.remove()
+    })
+
+    sectionModalDelete.append(spanCloseModal, pMessage, buttonDelete)
+    divModalDelete.appendChild(sectionModalDelete)
+    document.body.appendChild(divModalDelete)
 }
 
 
@@ -106,9 +132,9 @@ export function createEditUserModal (userId) {
 export function createDeleteUserModal (userName, userId) {
     let divModalDeleteUser = document.createElement('div')
     let sectionModalDelete = document.createElement('section')
-    let spanCloseModal = document.createElement('span')
-    let pMessage = document.createElement('p')
-    let buttonDelete = document.createElement('button')
+    let spanCloseModal     = document.createElement('span')
+    let pMessage           = document.createElement('p')
+    let buttonDelete       = document.createElement('button')
 
 
     divModalDeleteUser.className = 'modal-bg'

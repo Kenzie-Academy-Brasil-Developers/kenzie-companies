@@ -1,5 +1,5 @@
 import { typeOfUser, getAllDepartments, getCompanies, getAllUsers } from "../../../request.js"
-import { createEditDepartmentModal, createEditUserModal, createDeleteUserModal } from "./modalsAdmin.js"
+import { createEditDepartmentModal, createDeleteDepartmentModal, createEditUserModal, createDeleteUserModal } from "./modalsAdmin.js"
 
 
 const selectCompanies   = document.querySelector('#selectCompanies')
@@ -95,6 +95,10 @@ function createDepartmentList (obj) {
     
     imgDeleteIcon.src = '/img/home/trash-icon.svg'
     imgDeleteIcon.alt = 'Excluir Departamento'
+
+    imgDeleteIcon.addEventListener('click', () => {
+        createDeleteDepartmentModal(obj.name, li.id)
+    })
 
     divIcons.append(imgEyeIcon, imgEditIcon, imgDeleteIcon)
     li.append(h3DepartmentName, smallDescription, smallCompanyName, divIcons) 

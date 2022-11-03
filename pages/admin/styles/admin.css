@@ -50,7 +50,7 @@
 
 .section ul{
     background-color: #F8F8F8;
-    max-height: 350px;
+    height: 350px;
     margin-top: 15px;
     padding: 30px 55px;
     display: flex;

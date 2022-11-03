@@ -87,7 +87,7 @@ export async function renderUsersList () {
     const ulUsersList = document.querySelector('#usersList')
     ulUsersList.innerHTML = ''
     
-    let allUsers = await getAllUsers(userToken)
+    let allUsers = (await getAllUsers(userToken)).filter((user) => !user.is_admin)
     
     allUsers.forEach(async (user) => {
         let li = await createUserli(user)

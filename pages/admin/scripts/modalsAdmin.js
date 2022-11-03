@@ -1,7 +1,46 @@
-import { editUserInfo, deleteUser } from "../../../request.js";
-import { renderUsersList } from "./admin.js";
+import { editDepartment, editUserInfo, deleteUser } from "../../../request.js";
+import { renderDepartmentsList, renderUsersList } from "./admin.js";
 
 const userToken = localStorage.getItem('userToken')
+
+export function createEditDepartmentModal (department, departmentId) {
+    let divModalEdit = document.createElement('div')
+    let sectionModalEdit = document.createElement('section')
+    let spanCloseModal   = document.createElement('span')
+    let h2ModalTitle     = document.createElement('h2')
+    let formEdit         = document.createElement('form')
+
+    divModalEdit.className = 'modal-bg'
+    sectionModalEdit.classList = 'modal modal-edit'
+    spanCloseModal.innerText   = 'X'
+    spanCloseModal.addEventListener('click', () => {divModalEdit.remove()})
+    h2ModalTitle.innerText     = 'Editar Departamento'
+    formEdit.insertAdjacentHTML('afterbegin', `
+        <input type="text" placeholder="Descrição">
+        <button type="submit">Salvar Alterações</button>
+    `)
+
+    formEdit.elements[0].value = department.description
+    
+    formEdit.addEventListener('submit', async (event) => {
+        event.preventDefault()
+
+        let editedDescription = formEdit.elements[0].value
+
+        let editedDepartmentBody = {
+            description: editedDescription
+        }
+        await editDepartment(userToken, editedDepartmentBody, departmentId)
+
+        await renderDepartmentsList()
+        divModalEdit.remove()
+
+    })
+    
+    sectionModalEdit.append(spanCloseModal, h2ModalTitle, formEdit)
+    divModalEdit.appendChild(sectionModalEdit)
+    document.body.appendChild(divModalEdit)
+}
 
 
 export function createEditUserModal (userId) {
@@ -61,6 +100,7 @@ export function createEditUserModal (userId) {
     document.body.appendChild(divModalEditUser)
      
 }
+
 
 export function createDeleteUserModal (userName, userId) {
     let divModalDeleteUser = document.createElement('div')

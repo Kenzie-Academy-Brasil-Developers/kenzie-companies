@@ -1,5 +1,5 @@
 import { typeOfUser, getAllDepartments, getCompanies, getAllUsers } from "../../../request.js"
-import { createEditUserModal, createDeleteUserModal } from "./modalsAdmin.js"
+import { createEditDepartmentModal, createEditUserModal, createDeleteUserModal } from "./modalsAdmin.js"
 
 
 const selectCompanies   = document.querySelector('#selectCompanies')
@@ -37,8 +37,9 @@ async function insertOptionValues () {
 insertOptionValues()
 
 
-async function renderDepartmentsList () {
+export async function renderDepartmentsList () {
     const ulDepartmentsList = document.querySelector('#departmentsList')
+    ulDepartmentsList.innerHTML = ''
 
     let departments = await getAllDepartments(userToken)
 
@@ -68,17 +69,36 @@ renderDepartmentsList()
 
 
 function createDepartmentList (obj) {
-    let li = document.createElement('li')
-    li.insertAdjacentHTML('afterbegin', `
-        <h3>${obj.name}</h3>
-        <small>${obj.description}</small>
-        <small>${obj.companies.name}</small>
-        <div>
-            <img src="/img/home/eye-icon.svg" alt="Ver Departamento">
-            <img src="/img/home/edit-icon-black.svg" alt="Editar Departamento">
-            <img src="/img/home/trash-icon.svg" alt="Excluir Departamento">
-        </div>
-    `)
+    let li               = document.createElement('li')
+    let h3DepartmentName = document.createElement('h3')
+    let smallDescription = document.createElement('small')
+    let smallCompanyName = document.createElement('small')
+    let divIcons         = document.createElement('div')
+    let imgEyeIcon       = document.createElement('img')
+    let imgEditIcon      = document.createElement('img')
+    let imgDeleteIcon    = document.createElement('img')
+
+    li.id = obj.uuid
+    h3DepartmentName.innerText = obj.name
+    smallDescription.innerText = obj.description
+    smallCompanyName.innerText = obj.companies.name
+    imgEyeIcon.src     = '/img/home/eye-icon.svg'
+    imgEyeIcon.alt    = 'Ver Departamento'
+
+    imgEditIcon.src   = '/img/home/edit-icon-black.svg'
+    imgEditIcon.alt   = 'Editar Departamento'
+    
+    imgEditIcon.addEventListener('click', async () => {
+        createEditDepartmentModal(obj, li.id)
+
+    })
+    
+    imgDeleteIcon.src = '/img/home/trash-icon.svg'
+    imgDeleteIcon.alt = 'Excluir Departamento'
+
+    divIcons.append(imgEyeIcon, imgEditIcon, imgDeleteIcon)
+    li.append(h3DepartmentName, smallDescription, smallCompanyName, divIcons) 
+    
     return li
 }
 

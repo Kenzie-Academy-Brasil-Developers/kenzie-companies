@@ -152,10 +152,13 @@ export async function editDepartment (token, body, departmentId) {
     const requestEditDepartment = await fetch(`${baseUrl}/departments/${departmentId}`, {
         method: 'PATCH',
         headers: {
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(body)
     })
+
+    const responseEditDepartment = await requestEditDepartment.json()
 }
 
 

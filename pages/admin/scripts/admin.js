@@ -127,7 +127,7 @@ async function createUserli(obj) {
 
     let divIcons = document.createElement('div')
     divIcons.insertAdjacentHTML('afterbegin', `
-        <img src="/img/home/edit-icon-black.svg" alt="Editar Departamento">
+        <img src="/img/home/edit-icon-blue.svg" alt="Editar Departamento">
         <img src="/img/home/trash-icon.svg" alt="Excluir Departamento">
     `)
 

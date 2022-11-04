@@ -35,7 +35,7 @@
                     <option value="null">Selecionar Empresa</option>
                 </select>
 
-                <button>
+                <button id="newDepartment">
                     <span>+</span>
                     <span>Criar</span>
                 </button>
@@ -49,82 +49,9 @@
             <ul id="usersList"></ul>
         </section>
     </main>
-
-    <!-- MODAL EDITAR USER-->
-    <!-- <div class="modal-bg">
-        <section class="modal modal-edit">
-            <span>X</span>
-            <h2>Editar Usuário</h2>
-            <form>
-                <select class="default">
-                    <option value="null">Selecionar modalidade de trabalho </option>
-                    <option value="home office">Home Office</option>
-                    <option value="presencial">Presencial</option>
-                </select>
-
-                <select class="default">
-                    <option value="null">Selecionar nível profissional</option>
-                    <option value="estagiario">Estagiário</option>
-                    <option value="junior">Junior</option>
-                    <option value="pleno">Pleno</option>
-                    <option value="senior">Sênior</option>
-                </select>
-                <button type="submit">Editar</button>
-            </form>
-        </section>
-    </div> -->
-    
-
-    <!-- MODAL CRIAR DEPARTAMENTO -->
-    <!-- <div class="modal-bg">
-        <section class="modal modal-edit">
-            <span>X</span>
-            <h2>Criar Departamento</h2>
-            <form>
-                <input type="text" placeholder="Nome do departamento" required>
-                <input type="text" placeholder="Descrição" required>
-                <select class="default">
-                    <option value="null">Selecionar empresa de trabalho </option>
-                    <option value="">Empresa 1</option>
-                    <option value="">Empresa 2</option>
-                </select>
-                <button type="submit">Criar o departamento</button>
-            </form>
-        </section>
-    </div> -->
-    
-    <!-- MODAL EDITAR DEPARTAMENTO -->
-    <!-- <div class="modal-bg">
-        <section class="modal modal-edit">
-            <span>X</span>
-            <h2>Editar Departamento</h2>
-            <form>
-                <input type="text" placeholder="Descrição">
-                <button type="submit">Salvar Alterações</button>
-            </form>
-        </section>
-    </div> -->
-    
-    <!-- MODAL DELETAR DEPARTAMENTO -->
-    <!-- <div class="modal-bg">
-        <section class="modal modal-delete">
-            <span>X</span>
-            <p>Realmente deseja deletar o Departamento "NOME" e demitir seus funcionários?</p>
-            <button>Confirmar</button>
-        </section>
-    </div> -->
-    
-    <!-- MODAL DELETAR USUÁRIO -->
-    <!-- <div class="modal-bg">
-        <section class="modal modal-delete">
-            <span>X</span>
-            <p>Realmente deseja remover o usuário "NOME"?</p>
-            <button>Remover</button>
-        </section>
-    </div> -->
     
     <!-- MODAL VER DEPARTAMENTO -->
-    <!-- <div class="modal-bg">
+    <!-- <div class="modal-bg see-department">
         <section class="modal modal-see">
             <span>X</span>
             <h2>Nome do departamento</h2>
@@ -136,9 +63,8 @@
                 </div>
 
                 <form>
-                    <select name="user" class="default">
+                    <select class="default">
                         <option value="null">Selecionar usuário</option>
-                        <option value="">2</option>
                     </select>
                     <button type="submit">Contratar</button>
                 </form>
@@ -159,5 +85,6 @@
     
     
     <script type="module" src="./scripts/admin.js"></script>
+    <script type="module" src="./scripts/modalsAdmin.js"></script>
 </body>
 </html>

@@ -1,4 +1,8 @@
 import { typeOfUser, getAllDepartments, getCompanies, getAllUsers } from "../../../request.js"
+import {
+    createEditDepartmentModal, createDeleteDepartmentModal,
+    createSeeDepartmentModal, createEditUserModal, createDeleteUserModal 
+} from "./modalsAdmin.js"
 
 
 const selectCompanies   = document.querySelector('#selectCompanies')
@@ -36,8 +40,9 @@ async function insertOptionValues () {
 insertOptionValues()
 
 
-async function renderDepartmentsList () {
+export async function renderDepartmentsList () {
     const ulDepartmentsList = document.querySelector('#departmentsList')
+    ulDepartmentsList.innerHTML = ''
 
     let departments = await getAllDepartments(userToken)
 
@@ -67,29 +72,58 @@ renderDepartmentsList()
 
 
 function createDepartmentList (obj) {
-    let li = document.createElement('li')
-    li.insertAdjacentHTML('afterbegin', `
-        <h3>${obj.name}</h3>
-        <small>${obj.description}</small>
-        <small>${obj.companies.name}</small>
-        <div>
-            <img src="/img/home/eye-icon.svg" alt="Ver Departamento">
-            <img src="/img/home/edit-icon-black.svg" alt="Editar Departamento">
-            <img src="/img/home/trash-icon.svg" alt="Excluir Departamento">
-        </div>
-    `)
+    let li               = document.createElement('li')
+    let h3DepartmentName = document.createElement('h3')
+    let smallDescription = document.createElement('small')
+    let smallCompanyName = document.createElement('small')
+    let divIcons         = document.createElement('div')
+    let imgEyeIcon       = document.createElement('img')
+    let imgEditIcon      = document.createElement('img')
+    let imgDeleteIcon    = document.createElement('img')
+
+    li.id = obj.uuid
+    h3DepartmentName.innerText = obj.name
+    smallDescription.innerText = obj.description
+    smallCompanyName.innerText = obj.companies.name
+    imgEyeIcon.src     = '/img/home/eye-icon.svg'
+    imgEyeIcon.alt    = 'Ver Departamento'
+
+    imgEyeIcon.addEventListener('click', async () => {
+        await createSeeDepartmentModal(obj)
+    })
+    
+
+    imgEditIcon.src   = '/img/home/edit-icon-black.svg'
+    imgEditIcon.alt   = 'Editar Departamento'
+    
+    imgEditIcon.addEventListener('click', async () => {
+        createEditDepartmentModal(obj, li.id)
+
+    })
+    
+    imgDeleteIcon.src = '/img/home/trash-icon.svg'
+    imgDeleteIcon.alt = 'Excluir Departamento'
+
+    imgDeleteIcon.addEventListener('click', () => {
+        createDeleteDepartmentModal(obj.name, li.id)
+    })
+
+    divIcons.append(imgEyeIcon, imgEditIcon, imgDeleteIcon)
+    li.append(h3DepartmentName, smallDescription, smallCompanyName, divIcons) 
+    
     return li
 }
 
 
-async function renderUsersList () {
+export async function renderUsersList () {
     const ulUsersList = document.querySelector('#usersList')
+    ulUsersList.innerHTML = ''
     
-    let allUsers = await getAllUsers(userToken)
+    let allUsers = (await getAllUsers(userToken)).filter((user) => !user.is_admin)
     
     allUsers.forEach(async (user) => {
-        ulUsersList.appendChild(await createUserli(user))
-
+        let li = await createUserli(user)
+        ulUsersList.appendChild(li)
     })
 
 }
@@ -101,11 +135,15 @@ async function createUserli(obj) {
     username[0] = username[0].toUpperCase()
     username = username.join('')
     
-    let proLevel = obj.professional_level.split('')
-    proLevel[0] = proLevel[0].toUpperCase()
-    proLevel = proLevel.join('')
+    let proLevel = ''
+    if (obj.professional_level) {
+        proLevel = obj.professional_level.split('')
+        proLevel[0] = proLevel[0].toUpperCase()
+        proLevel = proLevel.join('')
+    }
     
     let li = document.createElement('li')
+    li.id = obj.uuid
 
     let h3UserName = document.createElement('h3')
     h3UserName.innerText = username
@@ -126,11 +164,26 @@ async function createUserli(obj) {
     }
 
     let divIcons = document.createElement('div')
-    divIcons.insertAdjacentHTML('afterbegin', `
-        <img src="/img/home/edit-icon-black.svg" alt="Editar Departamento">
-        <img src="/img/home/trash-icon.svg" alt="Excluir Departamento">
-    `)
 
+    let imgEditIcon = document.createElement('img')
+    imgEditIcon.className = 'edit-user-icon'
+    imgEditIcon.src = '/img/home/edit-icon-blue.svg'
+    imgEditIcon.alt = 'Editar informações do usuário'
+
+    imgEditIcon.addEventListener('click', () => {
+        createEditUserModal(li.id)
+    })
+    
+    let imgDeleteIcon = document.createElement('img')
+    imgDeleteIcon.className = 'delete-user-icon'
+    imgDeleteIcon.src = '/img/home/trash-icon.svg'
+    imgDeleteIcon.alt = 'Excluir usuário'
+
+    imgDeleteIcon.addEventListener('click', () => {
+        createDeleteUserModal(username, li.id)
+    })
+    
+    divIcons.append(imgEditIcon, imgDeleteIcon)
     li.append(h3UserName, smallProLevel, smallWorkFor, divIcons)
     
     return li

@@ -184,6 +184,34 @@ export async function deleteDepartment (token, departmentId) {
 }
 
 
+export async function hireEmployee (token, body) {
+    const requestHireEmployee = await fetch(`${baseUrl}/departments/hire`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+    })
+
+    const responseHireEmployee = await requestHireEmployee.json()
+}
+
+
+export async function dismissEmployee (token, body) {
+    const requestDismissEmployee = await fetch(`${baseUrl}/departments/hire`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(body)
+    })
+
+    const responseDismissEmployee = await requestDismissEmployee.json()
+}
+
+
 export async function getAllUsers (token) {
     const requestAllUsers = await fetch(`${baseUrl}/users`, {
         method: 'GET',

@@ -1,5 +1,8 @@
 import { typeOfUser, getAllDepartments, getCompanies, getAllUsers } from "../../../request.js"
-import { createEditDepartmentModal, createDeleteDepartmentModal, createEditUserModal, createDeleteUserModal } from "./modalsAdmin.js"
+import {
+    createEditDepartmentModal, createDeleteDepartmentModal,
+    createSeeDepartmentModal, createEditUserModal, createDeleteUserModal 
+} from "./modalsAdmin.js"
 
 
 const selectCompanies   = document.querySelector('#selectCompanies')
@@ -84,6 +87,11 @@ function createDepartmentList (obj) {
     smallCompanyName.innerText = obj.companies.name
     imgEyeIcon.src     = '/img/home/eye-icon.svg'
     imgEyeIcon.alt    = 'Ver Departamento'
+
+    imgEyeIcon.addEventListener('click', async () => {
+        await createSeeDepartmentModal(obj)
+    })
+    
 
     imgEditIcon.src   = '/img/home/edit-icon-black.svg'
     imgEditIcon.alt   = 'Editar Departamento'

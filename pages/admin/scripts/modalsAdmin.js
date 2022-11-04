@@ -1,4 +1,8 @@
-import { getCompanies, createDepartment, editDepartment, deleteDepartment, editUserInfo, deleteUser } from "../../../request.js";
+import {
+    getCompanies, createDepartment, editDepartment, deleteDepartment,
+    hireEmployee, dismissEmployee, getAllUsers, userOutOfWork, editUserInfo, deleteUser
+} from "../../../request.js";
+
 import { renderDepartmentsList, renderUsersList } from "./admin.js";
 
 const userToken = localStorage.getItem('userToken')
@@ -74,8 +78,10 @@ function createNewDepartmentModal () {
 createNewDepartmentModal()
 
 
-export function createSeeDepartmentModal (department) {
-    let divSeeModal            = document.createElement('div')
+export async function createSeeDepartmentModal (department) {
+    
+    
+    let divSeeModal            = document.createElement('div')    
     let sectionModal           = document.createElement('section')
     let spanCloseModal         = document.createElement('span')
     let h2ModalTitle           = document.createElement('h2')
@@ -95,22 +101,49 @@ export function createSeeDepartmentModal (department) {
     h2ModalTitle.innerText = department.name
     pDepartmentDescription.innerText = department.description
     smallCompanyName.innerText = department.companies.name
+    ulEmployeesList.className = 'employee-list'
     selectUser.className = 'default'
     selectUser.insertAdjacentHTML('afterbegin', `
         <option value="null">Selecionar usuário</option>
     `)
+
+    let usersOutOfWork = (await userOutOfWork(userToken)).filter((element) => !element.is_admin)
+    usersOutOfWork.forEach((user) => {
+        let option = document.createElement('option')
+        option.value = user.uuid
+        option.innerText = user.username
+        
+        selectUser.appendChild(option)
+    })
+    
+    
     buttonHire.type = 'submit'
     buttonHire.innerText = 'Contratar'
-    ulEmployeesList.insertAdjacentHTML('afterbegin', `
-        <li>
-            <h3>Username</h3>
-            <small>Pleno</small>
-            <small>Company Name</small>
-            <div>
-                <button>Desligar</button>
-            </div>
-        </li>
-    `)
+    
+    
+    formHire.addEventListener('submit', async (event) => {
+        event.preventDefault()
+        
+        let hireEmployeeBody = {
+            user_uuid: selectUser.value,
+            department_uuid: department.uuid
+        }
+        
+        await hireEmployee(userToken, hireEmployeeBody)
+
+        ulEmployeesList.innerHTML = ''
+        
+        let allUsers = await getAllUsers(userToken)
+        allUsers.filter((user) => user.department_uuid == department.uuid).forEach((employee) => {
+            ulEmployeesList.appendChild(createEmployeesList (employee, department))
+        })
+    })
+    
+    let employeesList = (await getAllUsers(userToken)).filter((user) => user.department_uuid == department.uuid)
+    
+    employeesList.forEach((employee) => {
+        ulEmployeesList.appendChild(createEmployeesList(employee, department))
+    })
 
     divDepartmentInfo.append(pDepartmentDescription, smallCompanyName)
     formHire.append(selectUser, buttonHire)
@@ -119,6 +152,46 @@ export function createSeeDepartmentModal (department) {
     divSeeModal.appendChild(sectionModal)
     document.body.appendChild(divSeeModal)
     
+}
+
+
+function createEmployeesList (employee, department) {
+    let liEmployee     = document.createElement('li')
+    let h3EmployeeName = document.createElement('h3')
+    let smallProLevel  = document.createElement('small')
+    let smallCompany   = document.createElement('small')
+    let divButton      = document.createElement('div')
+    let buttonDismiss  = document.createElement('button')
+
+    let userName = employee.username.split('')
+    userName[0] = userName[0].toUpperCase()
+    userName = userName.join('')
+    
+    let proLevel = employee.professional_level.split('')
+    proLevel[0] = proLevel[0].toUpperCase()
+    proLevel = proLevel.join('')
+    
+    h3EmployeeName.innerText = userName
+    smallProLevel.innerText  = proLevel
+    smallCompany.innerText   = department.companies.name
+    buttonDismiss.innerText  = 'Desligar'
+    buttonDismiss.id = 'dismissButton'
+    
+    buttonDismiss.addEventListener('click', async () => {
+        await dismissEmployee(userToken, employee.uuid)
+        
+        const div = document.querySelector('.modal-bg')
+        console.log(div)
+        div.remove()
+        createSeeDepartmentModal (department)
+        
+    })
+    
+    
+    divButton.appendChild(buttonDismiss)
+    liEmployee.append(h3EmployeeName, smallProLevel, smallCompany, divButton)
+
+    return liEmployee
 }
 
 

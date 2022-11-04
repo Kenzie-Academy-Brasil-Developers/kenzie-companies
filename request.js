@@ -198,14 +198,13 @@ export async function hireEmployee (token, body) {
 }
 
 
-export async function dismissEmployee (token, body) {
-    const requestDismissEmployee = await fetch(`${baseUrl}/departments/hire`, {
+export async function dismissEmployee (token, id) {
+    const requestDismissEmployee = await fetch(`${baseUrl}/departments/dismiss/${id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(body)
+        }
     })
 
     const responseDismissEmployee = await requestDismissEmployee.json()
@@ -220,6 +219,17 @@ export async function getAllUsers (token) {
     const responseAllUsers = await requestAllUsers.json()
 
     return responseAllUsers
+}
+
+
+export async function userOutOfWork (token) {
+    const requestOutOfWork = await fetch(`${baseUrl}/admin/out_of_work`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${token}`}
+    })
+    const responseOutOfWork = await requestOutOfWork.json()
+
+    return responseOutOfWork
 }
 
 

@@ -24,6 +24,7 @@
 }
 
 .main-empty{
+    max-width: 70rem;
     min-height: 350px;
     display: grid;
     place-items: center;

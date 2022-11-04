@@ -74,8 +74,56 @@ function createNewDepartmentModal () {
 createNewDepartmentModal()
 
 
+export function createSeeDepartmentModal (department) {
+    let divSeeModal            = document.createElement('div')
+    let sectionModal           = document.createElement('section')
+    let spanCloseModal         = document.createElement('span')
+    let h2ModalTitle           = document.createElement('h2')
+    let divTop                 = document.createElement('div')
+    let divDepartmentInfo      = document.createElement('div')
+    let pDepartmentDescription = document.createElement('p')
+    let smallCompanyName       = document.createElement('small')
+    let formHire               = document.createElement('form')
+    let selectUser             = document.createElement('select')
+    let buttonHire             = document.createElement('button')
+    let ulEmployeesList        = document.createElement('ul')
+
+    divSeeModal.className = 'modal-bg'
+    sectionModal.classList = 'modal modal-see'
+    spanCloseModal.innerText = 'X'
+    spanCloseModal.addEventListener('click', () => {divSeeModal.remove()})
+    h2ModalTitle.innerText = department.name
+    pDepartmentDescription.innerText = department.description
+    smallCompanyName.innerText = department.companies.name
+    selectUser.className = 'default'
+    selectUser.insertAdjacentHTML('afterbegin', `
+        <option value="null">Selecionar usuário</option>
+    `)
+    buttonHire.type = 'submit'
+    buttonHire.innerText = 'Contratar'
+    ulEmployeesList.insertAdjacentHTML('afterbegin', `
+        <li>
+            <h3>Username</h3>
+            <small>Pleno</small>
+            <small>Company Name</small>
+            <div>
+                <button>Desligar</button>
+            </div>
+        </li>
+    `)
+
+    divDepartmentInfo.append(pDepartmentDescription, smallCompanyName)
+    formHire.append(selectUser, buttonHire)
+    divTop.append(divDepartmentInfo, formHire)
+    sectionModal.append(spanCloseModal, h2ModalTitle, divTop, ulEmployeesList)
+    divSeeModal.appendChild(sectionModal)
+    document.body.appendChild(divSeeModal)
+    
+}
+
+
 export function createEditDepartmentModal (department, departmentId) {
-    let divModalEdit = document.createElement('div')
+    let divModalEdit     = document.createElement('div')
     let sectionModalEdit = document.createElement('section')
     let spanCloseModal   = document.createElement('span')
     let h2ModalTitle     = document.createElement('h2')

@@ -159,9 +159,16 @@ export async function createSeeDepartmentModal (department) {
     
     let employeesList = (await getAllUsers(userToken)).filter((user) => user.department_uuid == department.uuid)
     
-    employeesList.forEach((employee) => {
-        ulEmployeesList.appendChild(createEmployeesList(employee, department))
-    })
+    if (employeesList.length == 0) {
+        let liNoEmployees = document.createElement('li')
+        liNoEmployees.className = 'noEmployees'
+        liNoEmployees.innerText = 'Departamento sem funcionários'
+        ulEmployeesList.appendChild(liNoEmployees)
+    } else {
+        employeesList.forEach((employee) => {
+            ulEmployeesList.appendChild(createEmployeesList(employee, department))
+        })
+    }
 
     divDepartmentInfo.append(pDepartmentDescription, smallCompanyName)
     formHire.append(selectUser, buttonHire)

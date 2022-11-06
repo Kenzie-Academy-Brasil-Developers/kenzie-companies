@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/img/favicon.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="/globalStyles.css">
+    <link rel="stylesheet" href="../home/styles/header.css">
+    <link rel="stylesheet" href="../login/styles/main.css">
+    <link rel="stylesheet" href="./styles/register.css">
+    
+    <title>Kenzie Empresas - Cadastro</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container div-header">
+            <img src="/img/logo.svg" alt="Logo">
+            <img class="dropdown" src="/img/home/menu-icon.svg" alt="Menu de opções">
+            <!-- <img class="exit" src="/img/home/exit-icon.svg" alt=""> -->
+            <div class="menu-buttons">
+                <a href="/index.html">Home</a>
+                <a href="/pages/login/login.html">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="login">
+        <h1>Cadastre-se</h1>
+        <form class="form">
+            <input type="text" name="name" placeholder="Seu nome" required>
+            <input type="email" name="email" placeholder="Seu e-mail" required>
+            <input type="password" name="password" placeholder="Sua senha..." required>
+            <select class="default">
+                <option class="null" value="null">Nível profissional</option>
+                <option value="estágio">Estágio</option>
+                <option value="júnior">Júnior</option>
+                <option value="pleno">Pleno</option>
+                <option value="sênior">Sênior</option>
+            </select>
+            <span class="error"></span>
+            <button type="submit">Cadastre-se</button>
+        </form>
+        <a href="/index.html">Retornar</a>
+    </main>
+    
+    <script type="module" src="./scripts/register.js"></script>
+</body>
+</html>

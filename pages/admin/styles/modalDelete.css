@@ -1,0 +1,30 @@
+.modal-delete{
+    width: 40rem;
+    padding: 40px 80px;
+    margin: 60px auto 0 auto;
+    position: relative;
+}
+
+.modal-delete span{
+    font-size: 20px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.modal-delete p{
+    text-align: center;
+    font-weight: var(--weight1);
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+
+.modal-delete button{
+    width: 100%;
+    height: 50px;
+    background-color: var(--success);
+    color: var(--white);
+    font-size: var(--size5);
+    font-weight: var(--weight1);
+}

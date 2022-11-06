@@ -44,11 +44,25 @@
     height: 50px;
     padding-left: 5px;
     border: 1px solid rgba(0, 0, 0, 0.3);
+    outline: none;
 }
 
 .modal-see div form .default{
     color: rgba(0, 0, 0, 0.5);
     font-weight: var(--weight2);
+}
+
+.modal-see div form select .null {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-see div form select option {
+    color: black;
+    font-weight: var(--weight3);
+}
+
+.modal-see div form .selected {
+    color: black;
 }
 
 .modal-see div form button{
@@ -73,6 +87,16 @@
     gap: 25px;
     overflow: auto;
     background-color: #F8F8F8;
+}
+
+.modal-see ul .noEmployees{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    color: var(--alert);
+    font-weight: var(--weight2);
 }
 
 .modal-see ul li{

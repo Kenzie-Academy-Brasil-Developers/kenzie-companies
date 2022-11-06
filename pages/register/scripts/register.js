@@ -30,8 +30,19 @@ menuDropdown ()
 
 
 function registerBody () {
+    const select = document.querySelector('.default')
     const formRegister = document.querySelector('.form')
-    console.log(formRegister.elements)    
+
+    select.addEventListener('click', () => {
+        if (select.value != 'null') {
+            select.classList.remove('default')
+            select.classList.add('selected')
+        } else {
+            select.classList.remove('selected')
+            select.classList.add('default')
+        }
+    })
+    
     formRegister.addEventListener('submit', (event) => {
         event.preventDefault()
 
@@ -41,6 +52,10 @@ function registerBody () {
         let newUserEmail    = formRegister.elements[1].value
         let newUserPassword = formRegister.elements[2].value
         let newUserLevel    = formRegister.elements[3].value
+        if (newUserLevel == 'null') {
+            newUserLevel = ''
+        }
+
 
         newUser = {
             username: newUserName,

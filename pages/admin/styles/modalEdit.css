@@ -46,6 +46,28 @@
     font-weight: var(--weight2);
 }
 
+.modal-edit form select .null {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-edit form select option {
+    color: black;
+    font-weight: var(--weight3);
+}
+
+.modal-edit .selected {
+    color: black;
+}
+
+.modal-edit form textarea{
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 110px;
+    padding: 8px 12px;
+    resize: none;
+    outline: none;
+}
+
 .modal-edit form button{
     width: 100%;
     height: 50px;

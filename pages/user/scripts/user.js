@@ -22,12 +22,17 @@ logoutToken()
 async function renderUserInfo () {
     let { username, email, professional_level, kind_of_work } = await getUserInfo(userToken)
 
-    let proLevel = professional_level.split('')
-    proLevel[0] = proLevel[0].toUpperCase()
-    proLevel = proLevel.join('')
+    let proLevel = ''
+    if (professional_level != '') {
+        proLevel = professional_level.split('')
+        proLevel[0] = proLevel[0].toUpperCase()
+        proLevel = proLevel.join('')
+
+    }
 
     
     const divUserInfo = document.querySelector('.user-info')
+    divUserInfo.innerHTML = ''
     divUserInfo.insertAdjacentHTML('afterbegin', `
         <div>
             <h1>${(username).toUpperCase()}</h1>
@@ -81,7 +86,7 @@ async function createModalEdit (icon) {
         spanCloseModal.addEventListener('click', () => { divModal.remove() })
 
         const formEdit = document.querySelector('#formEdit')
-        formEdit.addEventListener('submit', (event) => {
+        formEdit.addEventListener('submit', async (event) => {
             event.preventDefault()
 
             let updatedUserInfo = {}
@@ -96,7 +101,8 @@ async function createModalEdit (icon) {
                 password: updatedPassword
             }
 
-            updateUserInfo(userToken ,updatedUserInfo)
+            await updateUserInfo(userToken ,updatedUserInfo)
+            renderUserInfo()
             divModal.remove()
         })
     })

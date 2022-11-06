@@ -11,6 +11,20 @@
     margin-bottom: 12px;
     padding-left: 10px;
     border: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+
+.form select .null {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.form select option {
+    color: black;
+    font-weight: var(--weight3);
+}
+
+.form .selected {
+    color: black;
 }
 
 .form .default{

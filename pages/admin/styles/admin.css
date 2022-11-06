@@ -61,6 +61,10 @@
     overflow: auto;
 }
 
+#departmentsList::-webkit-scrollbar-thumb{
+    background-color: var(--brand1);
+} 
+
 .section ul li{
     background-color: var(--white);
     border-bottom: 1px solid var(--brand1);

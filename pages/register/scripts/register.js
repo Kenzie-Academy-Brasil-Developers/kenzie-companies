@@ -30,8 +30,19 @@ menuDropdown ()
 
 
 function registerBody () {
+    const select = document.querySelector('.default')
     const formRegister = document.querySelector('.form')
-    console.log(formRegister.elements)    
+
+    select.addEventListener('click', () => {
+        if (select.value != 'null') {
+            select.classList.remove('default')
+            select.classList.add('selected')
+        } else {
+            select.classList.remove('selected')
+            select.classList.add('default')
+        }
+    })
+    
     formRegister.addEventListener('submit', (event) => {
         event.preventDefault()
 

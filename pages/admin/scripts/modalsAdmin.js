@@ -36,8 +36,18 @@ function createNewDepartmentModal () {
         selectCompany.className = 'default'
 
         selectCompany.insertAdjacentHTML('afterbegin', `
-            <option value="null">Selecionar empresa</option>
+            <option class="null" value="null">Selecionar empresa</option>
         `)
+
+        selectCompany.addEventListener('click', () => {
+            if (selectCompany.value != 'null') {
+                selectCompany.classList.remove('default')
+                selectCompany.classList.add('selected')
+            } else {
+                selectCompany.classList.remove('selected')
+                selectCompany.classList.add('default')
+            }
+        })
 
         let allCompanies = await getCompanies('')
         
@@ -104,8 +114,18 @@ export async function createSeeDepartmentModal (department) {
     ulEmployeesList.className = 'employee-list'
     selectUser.className = 'default'
     selectUser.insertAdjacentHTML('afterbegin', `
-        <option value="null">Selecionar usuário</option>
+        <option class="null" value="null">Selecionar usuário</option>
     `)
+
+    selectUser.addEventListener('click', () => {
+        if (selectUser.value != 'null') {
+            selectUser.classList.remove('default')
+            selectUser.classList.add('selected')
+        } else {
+            selectUser.classList.remove('selected')
+            selectUser.classList.add('default')
+        }
+    })
 
     let usersOutOfWork = (await userOutOfWork(userToken)).filter((element) => !element.is_admin)
     usersOutOfWork.forEach((user) => {
@@ -208,11 +228,11 @@ export function createEditDepartmentModal (department, departmentId) {
     spanCloseModal.addEventListener('click', () => {divModalEdit.remove()})
     h2ModalTitle.innerText     = 'Editar Departamento'
     formEdit.insertAdjacentHTML('afterbegin', `
-        <input type="text" placeholder="Descrição">
+        <textarea type="text" placeholder="Descrição">${department.description}</textarea>
         <button type="submit">Salvar Alterações</button>
     `)
 
-    formEdit.elements[0].value = department.description
+    // formEdit.elements[0].value = department.description
     
     formEdit.addEventListener('submit', async (event) => {
         event.preventDefault()
@@ -277,16 +297,16 @@ export function createEditUserModal (userId) {
 
     formEdit.insertAdjacentHTML('afterbegin', `
         <form>
-            <select id="select" class="default">
-                <option value="null">Selecionar modalidade de trabalho </option>
+            <select class="default">
+                <option class="null" value="null">Selecionar modalidade de trabalho </option>
                 <option value="presencial">Presencial</option>
                 <option value="home office">Home Office</option>
                 <option value="hibrido">Híbrido</option>
             </select>
 
             <select class="default">
-                <option value="null">Selecionar nível profissional</option>
-                <option value="estágio">Estagiário</option>
+                <option class="null" value="null">Selecionar nível profissional</option>
+                <option value="estágio">Estágio</option>
                 <option value="júnior">Junior</option>
                 <option value="pleno">Pleno</option>
                 <option value="sênior">Sênior</option>
@@ -294,6 +314,26 @@ export function createEditUserModal (userId) {
             <button type="submit">Editar</button>
         </form>
     `)
+
+    formEdit.elements[0].addEventListener('click', () => {
+        if (formEdit.elements[0].value != 'null') {
+            formEdit.elements[0].classList.remove('default')
+            formEdit.elements[0].classList.add('selected')
+        } else {
+            formEdit.elements[0].classList.remove('selected')
+            formEdit.elements[0].classList.add('default')
+        }
+    })
+
+    formEdit.elements[1].addEventListener('click', () => {
+        if (formEdit.elements[1].value != 'null') {
+            formEdit.elements[1].classList.remove('default')
+            formEdit.elements[1].classList.add('selected')
+        } else {
+            formEdit.elements[1].classList.remove('selected')
+            formEdit.elements[1].classList.add('default')
+        }
+    })
     
     formEdit.addEventListener('submit', async (event) => {
         event.preventDefault()
@@ -316,6 +356,7 @@ export function createEditUserModal (userId) {
     sectionModalEdit.append(spanCloseModal, h2ModalTitle, formEdit)
     divModalEditUser.appendChild(sectionModalEdit)
     document.body.appendChild(divModalEditUser)
+
      
 }
 

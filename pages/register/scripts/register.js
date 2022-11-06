@@ -52,6 +52,10 @@ function registerBody () {
         let newUserEmail    = formRegister.elements[1].value
         let newUserPassword = formRegister.elements[2].value
         let newUserLevel    = formRegister.elements[3].value
+        if (newUserLevel == 'null') {
+            newUserLevel = ''
+        }
+
 
         newUser = {
             username: newUserName,

@@ -23,8 +23,12 @@
     cursor: pointer;
 }
 
+main {
+    max-width: 68rem !important;
+
+}
+
 .main-empty{
-    max-width: 70rem;
     min-height: 350px;
     display: grid;
     place-items: center;
@@ -56,8 +60,7 @@ main h2{
     padding: 35px 40px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 12px 40px;
+    gap: 12px 38px;
 }
 
 .main ul li{

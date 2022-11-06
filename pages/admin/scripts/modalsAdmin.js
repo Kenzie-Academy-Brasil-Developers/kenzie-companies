@@ -89,8 +89,6 @@ createNewDepartmentModal()
 
 
 export async function createSeeDepartmentModal (department) {
-    
-    
     let divSeeModal            = document.createElement('div')    
     let sectionModal           = document.createElement('section')
     let spanCloseModal         = document.createElement('span')
